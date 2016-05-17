@@ -54,6 +54,53 @@ class GameOfLife : public QThread
     int manx {0};
     void house ( bool **lattice, int x, int y );
     int housex {0};
+    int many {0};
+
+
+    void cloud(bool **lattice,int x, int y);
+    int cloudx{0};
+
+    void cloud2(bool **lattice,int x, int y);
+    int cloudxx{0};
+
+
+    void moon(bool **lattice, int x , int y);
+    int moonx{0};
+
+    void eso(bool **lattice, int x , int y);
+
+
+    void tree(bool **lattice, int x , int y);
+    int treex {0};
+    int treexx {0};
+
+    
+    //Mario:
+    void ground(bool **lattice, int x , int y);
+    void ground2(bool **lattice, int x , int y);
+
+    void lift(bool **lattice, int x , int y);
+    int lifty{0};
+
+    void mario(bool **lattice, int x , int y);
+    int mariox{0};
+    int marioy{0};
+
+
+    //flappy bird:
+    void bird(bool **lattice, int x , int y);
+    int birdx {0};
+    int birdy {0};
+    void ground3(bool **lattice, int x , int y);
+
+    //doodle jumo
+    void doodle(bool **lattice, int x , int y);
+    int doodlex{0};
+    int doodley{0};
+    void ground4(bool **lattice, int x , int y);
+
+
+
 
 
     bool **predictions;

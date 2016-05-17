@@ -64,23 +64,11 @@ GameOfLife::GameOfLife ( int w, int h ) : m_w ( w ), m_h ( h )
         lattice[i][j] = false;
       }
 
-  /*
-  glider ( lattice, 2*m_w/5, 2*m_h/5 );
-  glider ( lattice, 3*m_w/5, 3*m_h/5 );
-  glider ( lattice, 4*m_w/5, 4*m_h/5 );
-  glider ( lattice, 4*m_w/5, 2*m_h/5 );
-  glider ( lattice, 2*m_w/5, 4*m_h/5 );
-  */
 
-  carx = 0;
-  manx = m_w/2;
-  housex = 2*m_w/5;
 
-  /*
-  house ( lattice, housex, 3*m_h/5 -6 );
-  car ( lattice, carx, 3*m_h/5 +1 );
-  man ( lattice, manx, 3*m_h/5-1 );
-*/
+
+  doodley = 25;
+  doodlex = 11;
 
 }
 
@@ -199,29 +187,34 @@ void GameOfLife::development()
         }
     }
 
-  if(m_time %3 ==0)
-  {
 
-    if ( carx < m_w-5 )
-    carx += 2;
-  else
-    carx = 0;
-  }
-  
-  if(m_time %6 ==0)
+  if(m_time % 20 == 0)
   {
-  if ( manx < m_w-3 )
-    ++manx;
-  else
-    manx = 0;
+    if(doodley>12)
+    {
+      doodley--;
+    }
+    if(doodley == 12 && doodlex < 15)
+    {
+      doodlex++;
+    }
+    if(doodlex == 15)
+    {
+      doodley--;
+    }
+    if(doodley == 0)
+    {
+      doodley = 25;
+      doodlex = 11;
+    }
   }
-  
-  house ( nextLattice, housex, 3*m_h/5 -6 );
-  car ( nextLattice, carx, 3*m_h/5 +1 );
-  man ( nextLattice, manx, 3*m_h/5-1 );
-  
+  doodle(nextLattice,doodlex,doodley);
+  ground4(nextLattice,0,0-2);
+
+
+ //*****************************************
+
 }
-
 
 GameOfLife::~GameOfLife()
 {
@@ -243,86 +236,82 @@ GameOfLife::~GameOfLife()
 
 void GameOfLife::glider ( bool **lattice, int x, int y )
 {
-
+/*
   lattice[y+0][x+2] = true;
   lattice[y+1][x+1] = true;
   lattice[y+2][x+1] = true;
   lattice[y+2][x+2] = true;
-  lattice[y+2][x+3] = true;
+  lattice[y+2][x+3] = true; */
 
-}
-
-
-void GameOfLife::house ( bool **lattice, int x, int y )
-{
-
-  lattice[y+0][x+3] = true;
-
-  lattice[y+1][x+2] = true;
-  lattice[y+1][x+4] = true;
-
+  // TANK :
+  /*lattice[y+1][x+1] = true;
   lattice[y+2][x+1] = true;
-  lattice[y+2][x+5] = true;
-
-  lattice[y+3][x+0] = true;
-  lattice[y+3][x+6] = true;
-
-  lattice[y+4][x+0] = true;
-  lattice[y+4][x+6] = true;
-
-  lattice[y+5][x+0] = true;
-  lattice[y+5][x+6] = true;
-
-  lattice[y+6][x+0] = true;
-  lattice[y+6][x+6] = true;
-
-  lattice[y+7][x+0] = true;
-  lattice[y+7][x+6] = true;
-
-  lattice[y+8][x+0] = true;
-  lattice[y+8][x+1] = true;
-  lattice[y+8][x+2] = true;
-  lattice[y+8][x+3] = true;
-  lattice[y+8][x+4] = true;
-  lattice[y+8][x+5] = true;
-  lattice[y+8][x+6] = true;
-}
-
-
-void GameOfLife::man ( bool **lattice, int x, int y )
-{
-
-  lattice[y+0][x+1] = true;
-
-  lattice[y+1][x+0] = true;
-  lattice[y+1][x+1] = true;
-  lattice[y+1][x+2] = true;
-
-  lattice[y+2][x+1] = true;
-
-  lattice[y+3][x+0] = true;
+  lattice[y+3][x+1] = true;
   lattice[y+3][x+2] = true;
+  lattice[y+3][x+3] = true;
+  lattice[y+3][x+4] = true;
+  lattice[y+2][x+4] = true;
+  lattice[y+2][x+5] = true;
+  lattice[y+2][x+6] = true;
+  lattice[y+1][x+4] = true;
+  lattice[y+1][x+3] = true;
+  lattice[y+1][x+2] = true;*/
+
 
 }
-
-
-void GameOfLife::car ( bool **lattice, int x, int y )
+void GameOfLife::ground4 ( bool **lattice, int x, int y )
 {
 
-  lattice[y+0][x+1] = true;
-  lattice[y+0][x+2] = true;
-  lattice[y+0][x+3] = true;
+  lattice[y+5][x+15] = true;
+  lattice[y+5][x+16] = true;
+  lattice[y+5][x+17] = true;
+  lattice[y+5][x+18] = true;
 
-  lattice[y+1][x+0] = true;
-  lattice[y+1][x+1] = true;
-  lattice[y+1][x+2] = true;
-  lattice[y+1][x+3] = true;
-  lattice[y+1][x+4] = true;
+  lattice[y+9][x+12] = true;
+  lattice[y+9][x+13] = true;
+  lattice[y+9][x+14] = true;
+  lattice[y+9][x+15] = true;
 
-  lattice[y+2][x+1] = true;
-  lattice[y+2][x+3] = true;
+  lattice[y+13][x+15] = true;
+  lattice[y+13][x+16] = true;
+  lattice[y+13][x+17] = true;
+  lattice[y+13][x+18] = true;
+
+  lattice[y+17][x+12] = true;
+  lattice[y+17][x+13] = true;
+  lattice[y+17][x+14] = true;
+  lattice[y+17][x+15] = true;
+
+  lattice[y+17+4][x+12-3] = true;
+  lattice[y+17+4][x+13-3] = true;
+  lattice[y+17+4][x+14-3] = true;
+  lattice[y+17+4][x+15-3] = true;
+
+  lattice[y+17+4+3][x+12-3+2] = true;
+  lattice[y+17+4+3][x+13-3+2] = true;
+  lattice[y+17+4+3][x+14-3+2] = true;
+  lattice[y+17+4+3][x+15-3+2] = true;
+
+
+
 
 }
+
+
+void GameOfLife::doodle( bool **lattice, int x, int y )
+{
+  lattice[y+0][x+0] = true;
+  lattice[y+1][x+0] = true;
+  lattice[y+2][x+0] = true;
+  lattice[y+1][x-1] = true;
+  lattice[y+1][x+1] = true;
+
+
+  
+
+}
+
+
 
 
 int GameOfLife::getW() const
